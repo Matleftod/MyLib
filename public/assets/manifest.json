@@ -1,0 +1,26 @@
+{
+  "assets/vite.svg": {
+    "file": "vite-4a748afd.svg",
+    "src": "assets/vite.svg"
+  },
+  "assets/vue.svg": {
+    "file": "vue-5532db34.svg",
+    "src": "assets/vue.svg"
+  },
+  "main.css": {
+    "file": "main-962ee453.css",
+    "src": "main.css"
+  },
+  "main.ts": {
+    "file": "main.ts-648892fc.js",
+    "src": "main.ts",
+    "isEntry": true,
+    "css": [
+      "main-962ee453.css"
+    ],
+    "assets": [
+      "vite-4a748afd.svg",
+      "vue-5532db34.svg"
+    ]
+  }
+}

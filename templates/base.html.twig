@@ -11,9 +11,9 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            {{ vite_asset('main.ts') }}
         {% endblock %}
 
-        <script type="module" src="http://127.0.0.1:5173/src/main.ts" defer></script>
     </head>
     <body>
         {% block body %}{% endblock %}
