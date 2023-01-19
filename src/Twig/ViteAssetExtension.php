@@ -2,16 +2,19 @@
 
 namespace App\Twig;
 
+use Psr\Cache\CacheItemPoolInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class ViteAssetExtension extends AbstractExtension
 {
     private ?array $manifestData = null;
+    const CACHE_KEY = 'vite_manifest';
 
     public function __construct(
         private bool $isDev,
         private string $manifest,
+        private CacheItemPoolInterface $cache,
         )
     {
         
@@ -46,10 +49,19 @@ class ViteAssetExtension extends AbstractExtension
 
     public function assetProd(string $entry) : string
     {
-        $data = json_decode(file_get_contents($this->manifest), true);
-        $file = $data[$entry]['file'];
-        $css = $data[$entry]['css'];
-        //$imports = $data[$entry]['imports'];
+        if($this->manifestData === null){
+            $item = $this->cache->getItem(self::CACHE_KEY);
+            if($item->isHit()){
+                $this->manifestData = $item->get();
+            }else{
+                $this->manifestData = json_decode(file_get_contents($this->manifest), true);
+                $item->set($this->manifestData);
+                $this->cache->save($item);
+            }
+        }
+        $file = $this->manifestData[$entry]['file'];
+        $css = $this->manifestData[$entry]['css'] ?? [];
+        //$imports = $this->manifestData[$entry]['imports'] ?? [];
         $html = <<<HTML
         <script type="module" src="/assets/{$file}" defer></script>
         HTML;
