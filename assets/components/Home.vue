@@ -12,16 +12,18 @@ export default {
   name: 'Home',
   data(){
     return {
-      email: 'none',
+      email: '',
     }
   },
   created(){
-    fetch('authenticated-user')
-      .then(response => response.json())
-      .then(user => {
-        console.log("user: "+ user)
-        this.email = user.email
-      })
+    fetch('/authenUser',{
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(user => {
+      console.log("user: "+ user)
+      this.email = user.email
+    })
   }
 }
 </script>
