@@ -36,3 +36,7 @@ post_show:
     controller: 'App\Controller\DefaultController::showPost'
     # expressions can retrieve route parameter values using the "params" variable
     condition:  "params['id'] < 1000"
+
+app_logout:
+    path: /logout
+    methods: GET
