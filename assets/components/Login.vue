@@ -43,7 +43,7 @@ export default {
   methods:{
     sendLogin(){
       console.log("send login form");
-      fetch('/api/login', {
+      fetch('/api/login_check', {
         method: 'POST',
         headers: {'Content-Type': 'application.json'},
         body: JSON.stringify({

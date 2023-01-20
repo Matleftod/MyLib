@@ -10,16 +10,23 @@ use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ApiLoginController extends AbstractController
 {
-    public function getTokenUser(UserInterface $user, JWTTokenManagerInterface $JWTManager)
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
     {
-        return new JsonResponse(['token' => $JWTManager->create($user)]);
+        $this->em = $em;
     }
 
-    #[Route('/api/login', name: 'app_api_login')]
-    public function index(#[CurrentUser] ?User $user): Response
+    /**
+     * @Route("/api/login_check", name="login-check", methods={"POST"})
+     * @param JWTTokenManagerInterface $JWTManager
+     * @return JsonResponse
+     */
+    public function index(#[CurrentUser] ?User $user, $JWTManager): JsonResponse
     {
         if (null === $user) {
             return $this->json([
@@ -27,11 +34,28 @@ class ApiLoginController extends AbstractController
             ], Response::HTTP_UNAUTHORIZED);
         }
 
-        $token = $this->getTokenUser($user, $JWTManager); // somehow create an API token for $user
-    
+        $token = new JsonResponse(['token' => $JWTManager->create($user)]); // somehow create an API token for $user
+
         return $this->json([
             'user'  => $user->getUserIdentifier(),
             'token' => $token,
         ]);
     }
+
+    // #[Route('/api/login', name: 'app_api_login')]
+    // public function index(#[CurrentUser] ?User $user): Response
+    // {
+    //     if (null === $user) {
+    //         return $this->json([
+    //             'message' => 'missing credentials',
+    //         ], Response::HTTP_UNAUTHORIZED);
+    //     }
+
+    //     $token = $this->getTokenUser($user, $em); // somehow create an API token for $user
+    
+    //     return $this->json([
+    //         'user'  => $user->getUserIdentifier(),
+    //         'token' => $token,
+    //     ]);
+    // }
 }

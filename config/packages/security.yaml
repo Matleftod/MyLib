@@ -23,9 +23,18 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
-            json_login:
-                # api_login is a route we will create below
-                check_path: api_login
+            login:
+                pattern: ^/api/login
+                stateless: true
+                json_login:
+                    check_path: /api/login_check
+                    success_handler: lexik_jwt_authentication.handler.authentication_success
+                    failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+            api:
+                pattern:   ^/api
+                stateless: true
+                jwt: ~
                 
             logout:
                 path: app_logout
@@ -35,19 +44,6 @@ security:
         secured_area:
             form_login:
                 enable_csrf: true
-        
-        login:
-            pattern: ^/api/login
-            stateless: true
-            json_login:
-                check_path: /api/login_check
-                success_handler: lexik_jwt_authentication.handler.authentication_success
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure
-
-        api:
-            pattern:   ^/api
-            stateless: true
-            jwt: ~
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
