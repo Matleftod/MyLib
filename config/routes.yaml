@@ -4,24 +4,6 @@ controllers:
         namespace: App\Controller
     type: attribute
 
-blog_list:
-    path:       /blog/{page<\d+>?1}
-    controller: App\Controller\BlogController::list
-
-blog_show:
-    path:       /blog/{slug}
-    controller: App\Controller\BlogController::show
-
-api_post_show:
-    path:       /api/posts/{id}
-    controller: App\Controller\BlogApiController::show
-    methods:    GET|HEAD
-
-api_post_edit:
-    path:       /api/posts/{id}
-    controller: App\Controller\BlogApiController::edit
-    methods:    PUT
-
 contact:
     path:       /contact
     controller: 'App\Controller\DefaultController::contact'
@@ -36,3 +18,10 @@ post_show:
     controller: 'App\Controller\DefaultController::showPost'
     # expressions can retrieve route parameter values using the "params" variable
     condition:  "params['id'] < 1000"
+
+app_logout:
+    path: /logout
+    methods: GET
+
+api_login_check:
+    path: /api/login_check

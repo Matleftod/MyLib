@@ -1,22 +1,22 @@
 {
-  "assets/vite.svg": {
-    "file": "vite-4a748afd.svg",
-    "src": "assets/vite.svg"
-  },
   "assets/vue.svg": {
     "file": "vue-5532db34.svg",
     "src": "assets/vue.svg"
   },
+  "assets/vite.svg": {
+    "file": "vite-4a748afd.svg",
+    "src": "assets/vite.svg"
+  },
   "main.css": {
-    "file": "main-962ee453.css",
+    "file": "main-38a0266c.css",
     "src": "main.css"
   },
   "main.ts": {
-    "file": "main.ts-648892fc.js",
+    "file": "main.ts-c79848fd.js",
     "src": "main.ts",
     "isEntry": true,
     "css": [
-      "main-962ee453.css"
+      "main-38a0266c.css"
     ],
     "assets": [
       "vite-4a748afd.svg",
