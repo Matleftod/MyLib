@@ -16,12 +16,11 @@ export default {
     }
   },
   created(){
-    fetch('/authenUser',{
+    fetch('/api/authenUser',{
       method: 'GET'
     })
     .then(response => response.json())
     .then(user => {
-      console.log("user: "+ user)
       this.email = user.email
     })
   }

@@ -27,7 +27,7 @@ class LoginController extends AbstractController
     }
 
     /**
-     * @Route("/authenUser", name="authenticated-user", methods={"GET"})
+     * @Route("/api/authenUser", name="authenticated-user", methods={"GET"})
      */
     public function getAuthenUser(#[CurrentUser] ?User $user)
     {
