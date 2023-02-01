@@ -20,11 +20,6 @@ export default {
   </div>
 
   <div class="body">
-    <nav>
-      <router-link to="/">Acceuil</router-link> |
-      <router-link to="/about">About</router-link>
-      <!--<router-link to="/login">Login</router-link>-->
-    </nav>
     <router-view></router-view>
   </div>  
   <div class="footer">

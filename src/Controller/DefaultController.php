@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     #[Route('/', name: 'app_default')]
+    #[Route("/{route}", name:"vue_pages")]
     public function index(): Response
     {
         return $this->render('base.html.twig', [

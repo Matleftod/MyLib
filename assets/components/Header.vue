@@ -9,10 +9,12 @@
       <div class="header-account">
         <div class="header-profile">
           <p class="header-user-title">User Profile</p>
-          <h5 class="header-user-name">{{ email }}</h5>
+          <router-link to="/account">
+            <h5 class="header-user-name">{{ email }}</h5>
+          </router-link>
         </div>
         <div>
-          <a href="/login">Login</a>
+          <a href="/api/login">Login</a>
         </div>      
       </div>
     </div>    

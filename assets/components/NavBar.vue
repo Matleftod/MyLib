@@ -1,10 +1,9 @@
 <template>
     <conatiner class="navbar-container">
         <ul>
-            <li>BTN 1</li>
-            <li>BTN 2</li>
-            <li>BTN 3</li>
-            <li>BTN 4</li>
+            <li><router-link to="/">Acceuil</router-link></li>
+            <li><router-link to="/books">Books</router-link></li>
+            <li><router-link to="/about">About</router-link></li>
         </ul>
     </conatiner>
 </template>
