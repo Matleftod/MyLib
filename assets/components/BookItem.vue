@@ -1,0 +1,92 @@
+<template>
+    <div class="book-item">
+        <template v-if="volumeInfo.imageLinks">
+          <img :src="volumeInfo.imageLinks.thumbnail" :alt="volumeInfo.title">
+        </template>
+        <template v-else>
+          <img
+            src="https://islandpress.org/sites/default/files/400px%20x%20600px-r01BookNotPictured.jpg"
+            :alt="volumeInfo.title"
+            width="128"
+          >
+        </template>
+        <div class="bottom">
+            <h4 class="title">{{ volumeInfo.title }}</h4>
+    
+            <p class="author">
+                <span v-if="!volumeInfo.authors">No authors to display</span>
+                <span v-else>
+                    By
+                    <span v-for="(author, index) in volumeInfo.authors" :key="index">
+                    <em>
+                        {{
+                        index + 1 !== volumeInfo.authors.length && index + 1 !== book.volumeInfo.authors.length-1 ? author + ', ' : index + 1 == book.volumeInfo.authors.length && index+1 !== 1 ? ' and ' + author : author
+                        }}
+                    </em>
+                    </span>
+                </span>
+            </p>
+            <a :href="volumeInfo.previewLink" target="_blank">Voir plus
+            </a>
+        </div>
+    </div>
+  </template>
+  
+  <script lang="ts">
+  export default {
+    name: 'BookItem',
+    props: {
+      book: {
+        type: Object,
+        required: true
+      }
+    },
+    computed: {
+      volumeInfo(){
+        return this.book.volumeInfo
+      }
+    }
+  }
+  </script>
+  
+  <style scoped>
+  .book-item{
+    text-align: center;
+    background-color: rgb(31, 30, 30);
+    border-radius: 1rem;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 5px black;
+    transition: .5s;
+    position: relative;
+  }
+  .book-item img{
+    width: 100%;
+    height: 200px;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .book-item .bottom {
+    display: flex;
+    flex-direction: column;
+  }
+  .book-item .bottom .author, .book-item .bottom .title {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  ul {
+    padding: 0;
+  }
+  
+  ul li {
+    display: inline-block;
+  }
+  
+  ul li:first-child {
+    list-style: none;
+  }
+  .author {
+    font-size: 14px;
+  }
+</style>
+  

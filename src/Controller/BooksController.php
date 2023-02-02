@@ -12,7 +12,7 @@ use App\Repository\BooksRepository;
 
 class BooksController extends AbstractController
 {
-    #[Route('/books/index', name: 'app_books')]
+    /*#[Route('/books/index', name: 'app_books')]
     public function index(): Response
     {
         return $this->render('books/index.html.twig', [
@@ -37,7 +37,7 @@ class BooksController extends AbstractController
         $entityManager->flush();
 
         return new Response('Saved new books with id '.$books->getId());
-    }
+    }*/
 
     #[Route('/books/{id}', name: 'books_show')]
     public function show(ManagerRegistry $doctrine, int $id): Response
