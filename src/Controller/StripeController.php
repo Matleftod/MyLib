@@ -13,12 +13,11 @@ use Stripe;
 
 class StripeController extends AbstractController
 {
-  #[Route('/api/stripe', name: 'app_stripe')]
+  #[Route('/stripe', name: 'app_stripe')]
   public function index(#[CurrentUser] ?User $user, ManagerRegistry $doctrine, LoggerInterface $logger)
   {  
     Stripe\Stripe::setApiKey('pk_test_51MWy46Jv9xCelsB6yhoSeLWVtaU0S04zHLGLESTHblIycB5XvMwgiteGgGiNPrVfDZdck4FcLsN8Dmji35e9xCaK00rwBdSk42');
     // Replace this endpoint secret with your endpoint's unique secret
-    // If you are testing with the CLI, find the secret by running 'stripe listen'
     // If you are using an endpoint defined with the API or dashboard, look in your webhook settings
     // at https://dashboard.stripe.com/webhooks
     $endpoint_secret = 'whsec_971a56d4a2b47188c5ed951f1a003de4db4c3a309d7a654a42fc519b1cd9d81c';
