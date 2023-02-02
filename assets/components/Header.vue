@@ -62,4 +62,8 @@ export default {
 .header-user-title, .header-user-name{
   margin: 0px;
 }
+
+.header-logo img{
+  max-width: 50px;
+}
 </style>

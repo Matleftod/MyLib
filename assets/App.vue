@@ -20,7 +20,9 @@ export default {
   </div>
 
   <div class="body">
-    <router-view></router-view>
+    <div class="inside-body">
+      <router-view></router-view>
+    </div>
   </div>  
   <div class="footer">
 
@@ -32,6 +34,7 @@ export default {
     display: flex;
     position: fixed;
     width: 100%;
+    z-index: 9999;
   }
 
   .navbar{
@@ -41,9 +44,14 @@ export default {
     top: 78px;
   }
   .body{
-    display: flex;
     position: relative;
     top: 78px;
     left: 20%;
+    width: 80%;
+  }
+
+  .inside-body{
+    padding: 10px;
+    padding-bottom: 40px;
   }
   </style>
