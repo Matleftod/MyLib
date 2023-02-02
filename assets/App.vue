@@ -34,20 +34,22 @@ export default {
     display: flex;
     position: fixed;
     width: 100%;
+    height: 78px;
     z-index: 9999;
   }
 
   .navbar{
     display: flex;
     position: fixed;
-    width: 100%;
+    width: 160px;
     top: 78px;
   }
   .body{
     position: relative;
     top: 78px;
-    left: 20%;
-    width: 80%;
+    left: 160px;
+    width: calc(100% - 160px);    
+    text-align: center;
   }
 
   .inside-body{

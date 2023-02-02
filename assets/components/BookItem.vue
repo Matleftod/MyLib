@@ -5,7 +5,7 @@
         </template>
         <template v-else>
           <img
-            src="https://islandpress.org/sites/default/files/400px%20x%20600px-r01BookNotPictured.jpg"
+            src="../assets/jsp.jpg"
             :alt="volumeInfo.title"
             width="128"
           >
@@ -26,8 +26,12 @@
                     </span>
                 </span>
             </p>
-            <a :href="volumeInfo.previewLink" target="_blank">Voir plus
+            <div>
+              <a :href="volumeInfo.previewLink" target="_blank">See more | 
             </a>
+            <a @click="addVolume">Add
+            </a>
+            </div>
         </div>
     </div>
   </template>
@@ -44,6 +48,9 @@
     computed: {
       volumeInfo(){
         return this.book.volumeInfo
+      },
+      addVolume(){
+        console.log(this.book.id)
       }
     }
   }

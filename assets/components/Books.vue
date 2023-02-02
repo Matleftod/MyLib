@@ -86,7 +86,7 @@ export default {
 }
 
 .pagination a {
-  color: black;
+  color: rgb(255, 255, 255);
   float: left;
   padding: 8px 16px;
   text-decoration: none;

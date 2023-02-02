@@ -5,6 +5,7 @@ import About from '../components/About.vue';
 import Account from '../components/Account.vue'
 import Books from '../components/Books.vue'
 import Thanks from '../components/Thanks.vue';
+import MyBook from '../components/MyBook.vue';
 
 const routes = [
     {
@@ -31,6 +32,11 @@ const routes = [
         name: 'Thanks',
         path: '/thanks',
         component: Thanks,
+    },
+    {
+        name: 'MyBook',
+        path: '/mybook',
+        component: MyBook,
     }/*,
     {   
         name: 'Login',
