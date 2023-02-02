@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Doctrine\Persistence\ManagerRegistry;
 
 class LoginController extends AbstractController
 {
@@ -35,11 +36,38 @@ class LoginController extends AbstractController
             return $this->json([
                 'message' => 'missing credentials',
                 'email'  => 'none',
+                'is_premium'  => false,
             ], Response::HTTP_UNAUTHORIZED);
         }
 
         return $this->json([
             'email'  => $user->getUserIdentifier(),
+            'is_premium'  => $user->isIsPremium(),
         ]);
+    }
+
+    /**
+     * @Route("/api/setPremium", name="set-premium", methods={"PATCH"})
+     */
+    public function setPremiumUser(#[CurrentUser] ?User $user, ManagerRegistry $doctrine)
+    {
+        $entityManager = $doctrine->getManager();
+
+        if (null === $user) {
+            return $this->json([
+                'message' => 'missing credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+
+        $user->setIsPremium(true);
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $data =  [
+            'is_premium' => $user->isIsPremium(),
+        ];
+
+        return $this->json($data);
+
     }
 }

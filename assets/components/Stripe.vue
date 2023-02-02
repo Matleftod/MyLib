@@ -34,7 +34,7 @@ export default {
           quantity: 1,
         },
       ],
-      successURL: 'http://127.0.0.1:8000/account',
+      successURL: 'http://127.0.0.1:8000/thanks',
       cancelURL: 'http://127.0.0.1:8000/account',
     };
   },
