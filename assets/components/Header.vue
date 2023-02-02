@@ -7,7 +7,7 @@
         </a>
       </div>
       <div class="header-account">
-        <div v-if="email !== 'none'" class="premium">
+        <div v-if="email !== 'none' && !isPremium" class="premium">
           <stripe/>
         </div>
         <div v-if="email !== 'none'" class="header-profile"> 
@@ -17,7 +17,8 @@
           </router-link>
         </div>
         <div v-if="email === 'none'">
-          <a href="/api/login">Login</a>
+          <a href="/api/login">Login | </a>
+          <a href="/api/register">Register</a>
         </div>     
         <div v-else>      
           <a href="/api/logout">Logout</a>
@@ -36,6 +37,7 @@ export default {
   },
   data(){
     return {
+      isPremium: false,
       email: 'none',
     }
   },
@@ -46,6 +48,7 @@ export default {
     .then(response => response.json())
     .then(user => {
       this.email = user.email
+      this.isPremium = user.is_premium
     })
   }
 }

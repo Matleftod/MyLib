@@ -27,7 +27,7 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    #[Route('/register', name: 'app_register')]
+    #[Route('/api/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
         $user = new User();
@@ -43,6 +43,7 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setIsVerified(true);
+            $user->setIsPremium(false);
             $entityManager->persist($user);
             $entityManager->flush();
 

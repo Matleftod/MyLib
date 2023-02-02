@@ -4,7 +4,7 @@ import Home from '../components/Home.vue'
 import About from '../components/About.vue';
 import Account from '../components/Account.vue'
 import Books from '../components/Books.vue'
-import Stripe from '../components/Stripe.vue'
+import Thanks from '../components/Thanks.vue';
 
 const routes = [
     {
@@ -26,6 +26,11 @@ const routes = [
         name: 'Books',
         path: '/books',
         component: Books,
+    },
+    {
+        name: 'Thanks',
+        path: '/thanks',
+        component: Thanks,
     }/*,
     {   
         name: 'Login',
