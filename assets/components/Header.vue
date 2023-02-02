@@ -7,26 +7,36 @@
         </a>
       </div>
       <div class="header-account">
-        <div class="header-profile">
+        <div v-if="email !== 'none'" class="premium">
+          <stripe/>
+        </div>
+        <div v-if="email !== 'none'" class="header-profile"> 
           <p class="header-user-title">User Profile</p>
           <router-link to="/account">
             <h5 class="header-user-name">{{ email }}</h5>
           </router-link>
         </div>
-        <div>
+        <div v-if="email === 'none'">
           <a href="/api/login">Login</a>
-        </div>      
+        </div>     
+        <div v-else>      
+          <a href="/api/logout">Logout</a>
+        </div>     
       </div>
     </div>    
   </container>
 </template>
 
 <script lang="ts">
+import Stripe from './Stripe.vue'
 export default {
   name: 'Header',
+  components: {
+    Stripe,
+  },
   data(){
     return {
-      email: '',
+      email: 'none',
     }
   },
   created(){
@@ -53,10 +63,12 @@ export default {
 }
 .header-account{
   display: flex;
+  align-items: center;
 }
 
 .header-profile{
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 .header-user-title, .header-user-name{

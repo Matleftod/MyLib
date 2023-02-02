@@ -6,8 +6,11 @@ export default {
 
 <template>
   <div>
-    <h1>Account
+    <h1 class="title">Your account
     </h1>
+    <h2>
+      E-mail :
+    </h2>
   </div>
 </template>
 

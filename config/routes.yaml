@@ -20,7 +20,7 @@ post_show:
     condition:  "params['id'] < 1000"
 
 app_logout:
-    path: /logout
+    path: /api/logout
     methods: GET
 
 api_login_check:
