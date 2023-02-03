@@ -5,7 +5,7 @@
         </template>
         <template v-else>
           <img
-            src="https://islandpress.org/sites/default/files/400px%20x%20600px-r01BookNotPictured.jpg"
+            src="../assets/jsp.jpg"
             :alt="volumeInfo.title"
             width="128"
           >
@@ -26,15 +26,26 @@
                     </span>
                 </span>
             </p>
-            <a :href="volumeInfo.previewLink" target="_blank">Voir plus
+            <div>
+              <a :href="volumeInfo.previewLink" target="_blank">See more | 
             </a>
+            <a @click="addVolume">Add
+            </a>
+            </div>
         </div>
     </div>
   </template>
   
   <script lang="ts">
+
   export default {
     name: 'BookItem',
+    data(){
+      return{
+        isError: false,
+        errorMessage: '',
+      }
+    },
     props: {
       book: {
         type: Object,
@@ -44,6 +55,25 @@
     computed: {
       volumeInfo(){
         return this.book.volumeInfo
+      },
+      addVolume(){
+        fetch('/api/user_books', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/ld+json'},
+          body: JSON.stringify({
+            "UserId": 28,
+            "Title": this.book.volumeInfo.title,
+            "Author": this.book.volumeInfo.authors[0],
+            "userId": 28,
+            "title": this.book.volumeInfo.title,
+            "author": this.book.volumeInfo.authors[0]
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(this.book.volumeInfo.authors[0])
+          console.log(data);
+        })
       }
     }
   }
@@ -73,6 +103,9 @@
   .book-item .bottom .author, .book-item .bottom .title {
     font-size: 14px;
     margin-bottom: 12px;
+  }
+  .book-item a{
+    cursor: pointer;
   }
   ul {
     padding: 0;

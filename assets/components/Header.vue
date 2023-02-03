@@ -3,7 +3,7 @@
     <div class="header">
       <div class="header-logo">
         <a href="/">
-          <img src="../assets/kisspng.jpg" alt="logo">
+          <img src="../assets/Logo4W.png" alt="logo">
         </a>
       </div>
       <div class="header-account">
@@ -57,7 +57,7 @@ export default {
 <style scoped>
 .header-container{
   width: 100%;
-  background-color: rgb(48, 45, 45);
+  background-color: #1f1f1f;
 }
 .header{
   margin: 15px;
@@ -79,6 +79,6 @@ export default {
 }
 
 .header-logo img{
-  max-width: 50px;
+  max-width: 160px;
 }
 </style>
