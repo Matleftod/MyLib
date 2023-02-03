@@ -37,8 +37,15 @@
   </template>
   
   <script lang="ts">
+
   export default {
     name: 'BookItem',
+    data(){
+      return{
+        isError: false,
+        errorMessage: '',
+      }
+    },
     props: {
       book: {
         type: Object,
@@ -50,7 +57,23 @@
         return this.book.volumeInfo
       },
       addVolume(){
-        console.log(this.book.id)
+        fetch('/api/user_books', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/ld+json'},
+          body: JSON.stringify({
+            "UserId": 28,
+            "Title": this.book.volumeInfo.title,
+            "Author": this.book.volumeInfo.authors[0],
+            "userId": 28,
+            "title": this.book.volumeInfo.title,
+            "author": this.book.volumeInfo.authors[0]
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(this.book.volumeInfo.authors[0])
+          console.log(data);
+        })
       }
     }
   }
@@ -80,6 +103,9 @@
   .book-item .bottom .author, .book-item .bottom .title {
     font-size: 14px;
     margin-bottom: 12px;
+  }
+  .book-item a{
+    cursor: pointer;
   }
   ul {
     padding: 0;

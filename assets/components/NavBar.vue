@@ -4,7 +4,7 @@
             <li>
                 <router-link to="/">
                     <i class="fa-solid fa-house"></i>
-                    Acceuil
+                    Home
                 </router-link>
             </li>
             <li>

@@ -15,67 +15,52 @@ class UserBooks
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $author = null;
-
     #[ORM\Column]
-    private ?int $user = null;
+    private ?int $UserId = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Title = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Author = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getUserId(): ?int
     {
-        return $this->title;
+        return $this->UserId;
     }
 
-    public function setTitle(string $title): self
+    public function setUserId(int $UserId): self
     {
-        $this->title = $title;
+        $this->UserId = $UserId;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getTitle(): ?string
     {
-        return $this->image;
+        return $this->Title;
     }
 
-    public function setImage(?string $image): self
+    public function setTitle(string $Title): self
     {
-        $this->image = $image;
+        $this->Title = $Title;
 
         return $this;
     }
 
     public function getAuthor(): ?string
     {
-        return $this->author;
+        return $this->Author;
     }
 
-    public function setAuthor(string $author): self
+    public function setAuthor(string $Author): self
     {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    public function getUser(): ?int
-    {
-        return $this->user;
-    }
-
-    public function setUser(int $user): self
-    {
-        $this->user = $user;
+        $this->Author = $Author;
 
         return $this;
     }

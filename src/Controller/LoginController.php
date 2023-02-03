@@ -42,6 +42,7 @@ class LoginController extends AbstractController
 
         return $this->json([
             'email'  => $user->getUserIdentifier(),
+            'id'  => $user->getId(),
             'is_premium'  => $user->isIsPremium(),
         ]);
     }
